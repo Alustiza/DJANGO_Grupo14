@@ -33,6 +33,16 @@ def hola_mundo(request):
 
 
 def index(request):
+    
+    copyright = 'TEST - Grupo 14 - Comisión 23319 © 2023 /// powered by OpenAI'
+
+    context = {'copyright':copyright}
+    
+    return render(request,'publica/index.html',context)
+
+
+
+""" def index(request):
     if(request.method=='GET'):
         titulo = 'Titulo cuando accedo por GET'
     else:
@@ -68,7 +78,7 @@ def index(request):
                 'cursos':listado_cursos
             }
     
-    return render(request,'publica/index.html',context)
+    return render(request,'publica/index.html',context) """
 
 
 def saludar(request, nombre):
