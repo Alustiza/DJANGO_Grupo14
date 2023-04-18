@@ -2,6 +2,7 @@
 Proyecto final Grupo 14
 
 Integrantes:
+
 Alustiza Pablo	
 alustiza.p@gmail.com
 
