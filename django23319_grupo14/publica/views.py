@@ -36,11 +36,15 @@ from datetime import datetime
 
 def index(request):
     
-    copyright = 'TEST - Grupo 14 - Comisión 23319 © 2023 /// powered by OpenAI'
+    copyright = 'presentación en vivo - Grupo 14 - Comisión 23319 © 2023 /// powered by OpenAI'
 
     context = {'copyright':copyright}
     
     return render(request,'publica/index.html',context)
+
+
+
+
 
 
 
