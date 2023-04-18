@@ -122,7 +122,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+#Esta es la ruta dónde busca cuando el DEBUG = True
 STATIC_URL = 'static/'
+
+#Esta es la ruta dónde busca es producción ir a producción
+#antes de subir a producción hay que ejecutar este comando
+# python3 manage.py collectstatic
+# solo funciona si DEBUG = False
+STATIC_ROOT = BASE_DIR / 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
