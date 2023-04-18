@@ -3,9 +3,11 @@ from django.http import HttpResponse
 
 from datetime import datetime
 
+
+
 # Create your views here.
-def hola_mundo(request):
-    return HttpResponse("Hola mundo Django!!!!")
+# def hola_mundo(request):
+#     return HttpResponse("Hola mundo Django!!!!")
 
 
 
@@ -40,6 +42,15 @@ def index(request):
     
     return render(request,'publica/index.html',context)
 
+
+
+def hola(request):
+    
+    copyright = 'prueba'
+
+    context = {'copyright2':copyright}
+    
+    return render(request,'publica/hola_openai.html',context)
 
 
 """ def index(request):

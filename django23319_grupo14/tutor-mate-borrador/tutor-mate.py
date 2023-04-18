@@ -1,11 +1,5 @@
 # < ^ >  { }  [ ] ' ' [' '] / \
-"""
-TERMINAL_CHATGPT 
-Description: asistente académico en matemáticas nivel escuela secundaria técnica
-@author: pabloalustiza
-date: 03/2023
-version: 1.0.0
-"""
+
 
 # Módulos
 import openai
