@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 from datetime import datetime
 
-
+from publica.forms import ContactoForm
 
 # Create your views here.
 # def hola_mundo(request):
@@ -35,10 +35,21 @@ from datetime import datetime
 
 
 def index(request):
+    mensaje=None
+    if(request.method=='POST'):
+        contacto_form = ContactoForm(request.POST)
+        mensaje='Hemos recibido tus datos'
+        # acción para tomar los datos del formulario
+    else:
+        contacto_form = ContactoForm()
     
     copyright = 'presentación en vivo - Grupo 14 - Comisión 23319 © 2023 /// powered by OpenAI'
 
-    context = {'copyright':copyright}
+    context = {                
+                'copyright':copyright,
+                'mensaje':mensaje,
+                'contacto_form':contacto_form
+            }
     
     return render(request,'publica/index.html',context)
 
