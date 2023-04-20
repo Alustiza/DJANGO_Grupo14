@@ -25,13 +25,22 @@
       rel="stylesheet"
     />
     <!-- MDB -->
-    <link
+
+    {% comment %} <link
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
       rel="stylesheet"
-    />
+    /> {% endcomment %}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/publica/css/mdb.min.css'%}?v={% now 'U' %}">
+
   </head>
 
   <body>
+
+
+
+
     <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <!-- Container wrapper -->
@@ -52,12 +61,16 @@
       <!-- Collapsible wrapper -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Navbar brand -->
+        {% load static %}
         <a class="navbar-brand mt-2 mt-lg-0" href="#">
           <img
             {% comment %} src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" {% endcomment %}
-            src="/publica/img/logo-mateai.png" 
+            
 
-            height="30"
+            
+            src="{% static './publica/img/logo-mateai.svg' %}" 
+
+            height="60"
             alt="mate.ai"
             loading="lazy"
           />
@@ -411,6 +424,38 @@
 
 
 
+    <section>
+      <div class="">
+                
+        {% if mensaje %}
+            <div class="alert alert-success" role="alert">
+                {{mensaje}}
+            </div>
+        {% endif %}
+        <form id="contact-form" name="contact-form" action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
+            {% comment %} {{ contacto_form }} {% endcomment %}
+            
+            {% comment %} <table>
+                {{ contacto_form.as_table }}
+            </table> {% endcomment %}
+
+            {% comment %} <ul>
+                {{ contacto_form.as_ul }}
+            </ul> {% endcomment %}
+
+            {{ contacto_form.as_p }}
+            <div class="text-center text-md-left mt-3">
+                <button class="btn btn-primary" type="submit">Enviar</button>
+            </div>
+        </form>
+        <div class="status"></div>
+    </div>
+
+  </section>
+
+
+
     {% comment %}
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
@@ -420,9 +465,17 @@
     {% endcomment %}
 
     <!-- MDB -->
-    <script
+    
+    {% comment %} <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+    ></script> {% endcomment %}
+    {% load static %}
+    <script
+      type="text/javascript"
+      src="{% static '/publica/js/mdb.min.css'%}"
     ></script>
+
+
   </body>
 </html>
