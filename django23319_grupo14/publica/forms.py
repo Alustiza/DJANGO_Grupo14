@@ -21,3 +21,13 @@ class ContactoForm(forms.Form):
         label='Deseo suscribirme a las novedades',
         required=False
     )
+
+
+class LoginForm(forms.Form):
+    
+    email = forms.EmailField(label='Email',max_length=50, required=True)
+    password = forms.PasswordInput()
+    basesycondiciones = forms.BooleanField(
+        label='acepto las bases y condiciones',
+        required=True
+    )
