@@ -3,6 +3,7 @@ from django.http import HttpResponse
 
 from datetime import datetime
 
+from publica.forms import LoginForm
 from publica.forms import ContactoForm
 
 # Create your views here.
@@ -37,6 +38,29 @@ from publica.forms import ContactoForm
 def index(request):
     mensaje=None
     if(request.method=='POST'):
+        login_form = LoginForm(request.POST)
+        mensaje='Hemos recibido tus datos'
+        # acción para tomar los datos del formulario
+    else:
+        login_form = LoginForm()
+    
+    context = {                
+                'mensaje':mensaje,
+                'contacto_form':login_form
+            }
+    
+    return render(request,'publica/index.html',context)
+
+
+
+
+
+
+
+
+def home(request):
+    mensaje=None
+    if(request.method=='POST'):
         contacto_form = ContactoForm(request.POST)
         mensaje='Hemos recibido tus datos'
         # acción para tomar los datos del formulario
@@ -51,13 +75,29 @@ def index(request):
                 'contacto_form':contacto_form
             }
     
-    return render(request,'publica/index.html',context)
+    return render(request,'publica/home.html',context)
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+""" 
 
 def hola(request):
     
@@ -66,7 +106,7 @@ def hola(request):
     context = {'copyright2':copyright}
     
     return render(request,'publica/hola_openai.html',context)
-
+ """
 
 """ def index(request):
     if(request.method=='GET'):
@@ -107,16 +147,16 @@ def hola(request):
     return render(request,'publica/index.html',context) """
 
 
-def saludar(request, nombre):
-    return HttpResponse({nombre})
+# def saludar(request, nombre):
+#     return HttpResponse({nombre})
 
 
-def ver_proyectos(request, anio,mes):
-    return HttpResponse(f""" Proyectos del {mes} {anio}""")
+# def ver_proyectos(request, anio,mes):
+#     return HttpResponse(f""" Proyectos del {mes} {anio}""")
 
-def ver_proyectos_uno(request, anio,mes=1):
-    return HttpResponse(f""" Proyectos del {mes} {anio}""")
+# def ver_proyectos_uno(request, anio,mes=1):
+#     return HttpResponse(f""" Proyectos del {mes} {anio}""")
 
 
-def error_404(request, exception):
-    return render(request, "404.html")
+# def error_404(request, exception):
+#     return render(request, "404.html")
