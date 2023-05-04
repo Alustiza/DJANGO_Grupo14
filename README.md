@@ -27,3 +27,8 @@ Aplicación Admin:
 Se creará un administrador de usuarios para gestionar el alta, baja y modificaciones de los datos de los alumnos (usuarios)
 
 
+//////
+
+Diagrama de entidades / relaciones
+
+https://drive.google.com/file/d/1uKiHcV-EwML5QA5_y1aiEvBcD5zeDSoK/view?usp=share_link
