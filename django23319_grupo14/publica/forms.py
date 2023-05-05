@@ -1,5 +1,13 @@
 from django import forms
 
+class RegistroForm(forms.Form):
+    nombre = forms.CharField(label='Nombre')
+    apellido = forms.CharField(label='Apellido')
+    email = forms.EmailField(label='Email',max_length=50)
+    password = forms.PasswordInput()
+    fecha_nacimiento = forms.DateInput()
+
+
 class ContactoForm(forms.Form):
     TIPO_CONSULTA = (
         ('','-Seleccione-'),

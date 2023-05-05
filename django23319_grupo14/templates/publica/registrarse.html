@@ -1,0 +1,82 @@
+{% extends './base.html' %}
+
+{% block titulo %} mate.AI - Registrarse {% endblock%}
+
+{% block contenido %}
+<section class="gradient-custom">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-1 col-10 col-1">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body pt-5 pb-4 text-center">
+                        <h1>
+                            {% load static %}
+                            <img src="{% static './publica/img/logo-mateai.svg' %}" height="80" alt="mate.ai"
+                                loading="lazy" />
+                            </a>
+                        </h1> <br>
+                        <h4 class="fw my-4"> Completa tus datos para crear un nuevo usuario </h4>
+
+                        <section class="py-5">
+                            <div class="form-outline form-white my-2">
+                                {% if mensaje %}
+                                <div class="alert alert-success" role="alert">
+                                    {{mensaje}}
+                                </div>
+                                {% endif %}
+                                <form id="regisrarse_form" name="regisrarse_form" action="{% url 'index' %}"
+                                    method="POST">
+                                    {% csrf_token %}
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="nombre" id="typeName" class="form-control form-control-lg" />
+                                        <label class="form-label" for="typeName">Nombre</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="apellido" id="typeSurname" class="form-control form-control-lg" />
+                                        <label class="form-label" for="typeSurname">Apellido</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="date" id="typeDate" class="form-control form-control-lg" />
+                                        <label class="form-label" for="typeDate">Fecha de nacimiento</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="email" id="typeEmail" class="form-control form-control-lg" />
+                                        <label class="form-label" for="typeEmail">Email</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="password" id="typePassword" class="form-control form-control-lg" />
+                                        <label class="form-label" for="typePassword">Password</label>
+                                    </div>
+
+                                    <button class="btn btn-outline-light btn-lg px-5 mt-5 btn-rounded text-uppercase"
+                                        type="submit">Registrar</button>
+                                </form>
+                            </div>
+                        </section>
+
+                        <div>
+                            <a class="btn btn-outline-light btn-floating my-3"
+                                href="https://github.com/Alustiza/DJANGO_Grupo14" role="button">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+
+                        <div class="text-center pt-4">
+                            {{ copyright }}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock contenido %}
+
+{% load static %}
+<script type="text/javascript" src="{% static '/publica/js/mdb.min.js'%}"></script>

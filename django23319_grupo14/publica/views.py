@@ -5,6 +5,7 @@ from datetime import datetime
 
 from publica.forms import LoginForm
 from publica.forms import ContactoForm
+from publica.forms import RegistroForm
 
 # Create your views here.
 # def hola_mundo(request):
@@ -51,11 +52,23 @@ def index(request):
     
     return render(request,'publica/index.html',context)
 
+def registrarse(request):
+    mensaje=None
+    if(request.method=='POST'):
+        registro_form = RegistroForm(request.POST)
+        mensaje='Usuario creado, ya puedes iniciar sesión'
+    else:
+        registro_form = RegistroForm()
+    
+    copyright = 'CaC-Django 2023 - Comisión 23319 - Grupo 14  ©  //  Powered by OpenAI'
 
-
-
-
-
+    context = {                
+                'mensaje':mensaje,
+                'registro_form':registro_form,
+                'copyright':copyright
+            }
+    
+    return render(request,'publica/registrarse.html',context)
 
 
 def home(request):
