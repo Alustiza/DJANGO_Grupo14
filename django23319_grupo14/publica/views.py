@@ -67,7 +67,7 @@ def home(request):
     else:
         contacto_form = ContactoForm()
     
-    copyright = 'presentación en vivo - Grupo 14 - Comisión 23319 © 2023 /// powered by OpenAI'
+    copyright = 'CaC-Django 2023 - Comisión 23319 - Grupo 14  ©  //  Powered by OpenAI'
 
     context = {                
                 'copyright':copyright,

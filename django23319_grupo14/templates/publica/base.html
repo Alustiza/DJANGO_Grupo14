@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block titulo %}mate.ai{% endblock %}</title>
+    <title> {% block titulo %} mate.AI {% endblock titulo%} </title>
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
@@ -17,14 +17,23 @@
     <link rel="stylesheet" href="{% static '/publica/css/mdb.min.css'%}">
     <link rel="stylesheet" href="{% static '/publica/css/styles.css'%}">
 
-    {% block css %}{% endblock css %}
+    {% block css %} {% endblock css %}
 </head>
 
 <body>
+    <header>
+        {% block navbar %} {% endblock navbar %}
+    </header>
 
-    {% block contenido %}
-    {% endblock contenido %}
+    <main>
+        {% block contenido %} {% endblock contenido %}
+    </main>
 
+    <footer class="bg-dark text-center text-white">
+        {% block footer %} {% endblock footer %}
+    </footer>
+
+    {% block javascript %} {% endblock javascript %}
 </body>
 
 </html>
