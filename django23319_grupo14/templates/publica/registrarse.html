@@ -18,12 +18,38 @@
                         <h4 class="fw my-4"> Completa tus datos para crear un nuevo usuario </h4>
 
                         <section class="py-5">
-                            <div class="form-outline form-white my-2">
-                                {% if mensaje %}
-                                <div class="alert alert-success" role="alert">
-                                    {{mensaje}}
-                                </div>
-                                {% endif %}
+
+                            {% if mensaje %}
+                            <div class="alert alert-success" role="alert">
+                                {{mensaje}}
+                            </div>
+                            {% endif %}
+
+                            <div class="col-xl-12 justify-content-between">
+                                <form id="regisrarse_form" name="regisrarse_form" action="{% url 'index' %}"
+                                    method="POST">
+                                    {% csrf_token %}
+
+                                    {% for campo in registro_form %}
+                                    <div class="form-outline form-white mb-4 form-control-lg">
+                                        {% if campo.field.widget.input_type == 'checkbox' %}
+                                        {{campo}}
+                                        <label for="name" class="form-label text-white mb-2">{{campo.label}}</label>
+                                        {% else %}
+                                        <label for="name" class="form-label text-white mb-2">{{campo.label}}</label>
+                                        {{campo}}
+                                        {% endif %}
+                                    </div>
+                                    {% endfor %}
+
+                                    <button class="btn btn-outline-light btn-lg px-5 mt-5 btn-rounded text-uppercase"
+                                        type="submit">Registrar</button>
+
+                                </form>
+                            </div>
+
+
+                            <!-- 
                                 <form id="regisrarse_form" name="regisrarse_form" action="{% url 'index' %}"
                                     method="POST">
                                     {% csrf_token %}
@@ -55,9 +81,12 @@
 
                                     <button class="btn btn-outline-light btn-lg px-5 mt-5 btn-rounded text-uppercase"
                                         type="submit">Registrar</button>
-                                </form>
-                            </div>
+                                </form>-->
+
+
                         </section>
+
+
 
                         <div>
                             <a class="btn btn-outline-light btn-floating my-3"

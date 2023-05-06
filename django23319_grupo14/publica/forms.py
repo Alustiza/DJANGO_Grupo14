@@ -1,11 +1,22 @@
 from django import forms
 
 class RegistroForm(forms.Form):
-    nombre = forms.CharField(label='Nombre')
-    apellido = forms.CharField(label='Apellido')
-    email = forms.EmailField(label='Email',max_length=50)
-    password = forms.PasswordInput()
-    fecha_nacimiento = forms.DateInput()
+    nombre = forms.CharField(
+        label='Nombre',
+        widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Solo letras'}))
+    apellido = forms.CharField(
+        label='Apellido', 
+        widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Solo letras'}))
+    email = forms.EmailField(
+        label='Email',
+        max_length=50,
+        error_messages={'required': 'Por favor completa el campo'},
+        widget=forms.TextInput(attrs={'class':'form-control','type':'email'}))
+    password = forms.CharField(widget=forms.PasswordInput, label="Password")
+    aceptacion = forms.BooleanField(
+        label='Acepto los términos y condiciones',
+        required=True,
+        widget=forms.CheckboxInput(attrs={'class':'form-check-input','value':1}))
 
 
 class ContactoForm(forms.Form):
