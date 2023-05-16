@@ -18,70 +18,44 @@
                         <h4 class="fw my-4"> Completa tus datos para crear un nuevo usuario </h4>
 
                         <section class="py-5">
+                            <form id="regisrarse_form" name="regisrarse_form" action="{% url 'index' %}" method="POST">
+                                {% csrf_token %}
 
-                            {% if mensaje %}
-                            <div class="alert alert-success" role="alert">
-                                {{mensaje}}
-                            </div>
-                            {% endif %}
+                                <div class="form-outline form-white mb-4">
+                                    <input type="nombre" id="typeName" class="form-control form-control-lg" />
+                                    <label class="form-label" for="typeName">Nombre</label>
+                                </div>
 
-                            <div class="col-xl-12 justify-content-between">
-                                <form id="regisrarse_form" name="regisrarse_form" action="{% url 'index' %}"
-                                    method="POST">
-                                    {% csrf_token %}
+                                <div class="form-outline form-white mb-4">
+                                    <input type="apellido" id="typeSurname" class="form-control form-control-lg" />
+                                    <label class="form-label" for="typeSurname">Apellido</label>
+                                </div>
 
-                                    {% for campo in registro_form %}
-                                    <div class="form-outline form-white mb-4 form-control-lg">
-                                        {% if campo.field.widget.input_type == 'checkbox' %}
-                                        {{campo}}
-                                        <label for="name" class="form-label text-white mb-2">{{campo.label}}</label>
-                                        {% else %}
-                                        <label for="name" class="form-label text-white mb-2">{{campo.label}}</label>
-                                        {{campo}}
-                                        {% endif %}
-                                    </div>
-                                    {% endfor %}
+                                <div class="form-outline form-white mb-4">
+                                    <input type="date" id="typeDate" class="form-control form-control-lg" />
+                                    <label class="form-label" for="typeDate">Fecha de nacimiento</label>
+                                </div>
 
-                                    <button class="btn btn-outline-light btn-lg px-5 mt-5 btn-rounded text-uppercase"
-                                        type="submit">Registrar</button>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="email" id="typeEmail" class="form-control form-control-lg" />
+                                    <label class="form-label" for="typeEmail">Email</label>
+                                </div>
 
-                                </form>
-                            </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="password" id="typePassword" class="form-control form-control-lg" />
+                                    <label class="form-label" for="typePassword">Password</label>
+                                </div>
 
+                                <div>
+                                    <input type="checkbox" id="aceptacion" name="aceptacion">
+                                    <label for="aceptacion" class="form-label text-white mb-2">
+                                        {{registro_form.aceptacion.label}}
+                                    </label><br>
+                                </div>
 
-                            <!-- 
-                                <form id="regisrarse_form" name="regisrarse_form" action="{% url 'index' %}"
-                                    method="POST">
-                                    {% csrf_token %}
-
-                                    <div class="form-outline form-white mb-4">
-                                        <input type="nombre" id="typeName" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typeName">Nombre</label>
-                                    </div>
-
-                                    <div class="form-outline form-white mb-4">
-                                        <input type="apellido" id="typeSurname" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typeSurname">Apellido</label>
-                                    </div>
-
-                                    <div class="form-outline form-white mb-4">
-                                        <input type="date" id="typeDate" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typeDate">Fecha de nacimiento</label>
-                                    </div>
-
-                                    <div class="form-outline form-white mb-4">
-                                        <input type="email" id="typeEmail" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typeEmail">Email</label>
-                                    </div>
-
-                                    <div class="form-outline form-white mb-4">
-                                        <input type="password" id="typePassword" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typePassword">Password</label>
-                                    </div>
-
-                                    <button class="btn btn-outline-light btn-lg px-5 mt-5 btn-rounded text-uppercase"
-                                        type="submit">Registrar</button>
-                                </form>-->
+                                <button class="btn btn-outline-light btn-lg px-5 mt-5 btn-rounded text-uppercase"
+                                    type="submit">Registrar</button>
+                            </form>
 
 
                         </section>
@@ -106,6 +80,10 @@
     </div>
 </section>
 {% endblock contenido %}
+
+{% block javascript %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+{% endblock javascript %}
 
 {% load static %}
 <script type="text/javascript" src="{% static '/publica/js/mdb.min.js'%}"></script>
