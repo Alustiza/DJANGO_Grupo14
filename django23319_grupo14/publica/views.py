@@ -40,14 +40,12 @@ def index(request):
     mensaje=None
     if(request.method=='POST'):
         login_form = LoginForm(request.POST)
-        mensaje='Hemos recibido tus datos'
         # acción para tomar los datos del formulario
     else:
         login_form = LoginForm()
     
     context = {                
-                'mensaje':mensaje,
-                'contacto_form':login_form
+              'contacto_form':login_form
             }
     
     return render(request,'publica/index.html',context)
