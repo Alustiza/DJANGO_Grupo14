@@ -21,13 +21,7 @@
               <p class="text-white-50 my-3">Inicia sesión con tu correo y contraseña.</p>
 
               <section>
-                <!--Tiene sentido el if mensaje? -->
                 <div class="form-outline form-white my-2">
-                  {% if mensaje %}
-                  <div class="alert alert-success" role="alert">
-                    {{mensaje}}
-                  </div>
-                  {% endif %}
                   <form id="login_form" name="login_form" action="{% url 'home' %}" method="POST">
                     {% csrf_token %}
 
@@ -70,6 +64,9 @@
   </div>
 </section>
 {% endblock contenido %}
+{% block javascript %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+{% endblock javascript %}
 
 {% load static %}
 <script type="text/javascript" src="{% static '/publica/js/mdb.min.js'%}"></script>
