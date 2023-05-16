@@ -6,7 +6,7 @@
 <section class="gradient-custom">
     <div class="container py-5">
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-1 col-10 col-1">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card bg-dark text-white" style="border-radius: 1rem;">
                     <div class="card-body pt-5 pb-4 text-center">
                         <h1>
@@ -14,8 +14,8 @@
                             <img src="{% static './publica/img/logo-mateai.svg' %}" height="80" alt="mate.ai"
                                 loading="lazy" />
                             </a>
-                        </h1> <br>
-                        <h4 class="fw my-4"> Completa tus datos para crear un nuevo usuario </h4>
+                        </h1> 
+                        <h4 class="fw my-4"> Completa tus datos <br>para crear un nuevo usuario </h4>
 
                         <section class="py-5">
                             <form id="regisrarse_form" name="regisrarse_form" action="{% url 'index' %}" method="POST">
@@ -57,10 +57,9 @@
                                     type="submit">Registrar</button>
                             </form>
 
+                            
 
                         </section>
-
-
 
                         <div>
                             <a class="btn btn-outline-light btn-floating my-3"
@@ -69,9 +68,11 @@
                             </a>
                         </div>
 
-                        <div class="text-center pt-4">
+                        
+
+                        {% comment %} <div class="text-center pt-4">
                             {{ copyright }}
-                        </div>
+                        </div> {% endcomment %}
 
                     </div>
                 </div>
