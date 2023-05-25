@@ -19,6 +19,18 @@ class RegistroForm(forms.Form):
         widget=forms.CheckboxInput(attrs={'class':'form-check-input','value':1}))
 
 
+class LoginForm(forms.Form):
+    
+    email = forms.EmailField(label='Email',max_length=50, required=True)
+    password = forms.PasswordInput()
+    basesycondiciones = forms.BooleanField(
+        label='acepto las bases y condiciones',
+        required=True
+    )
+
+
+
+
 class ContactoForm(forms.Form):
     TIPO_CONSULTA = (
         ('','-Seleccione-'),
@@ -39,14 +51,4 @@ class ContactoForm(forms.Form):
     suscripcion = forms.BooleanField(
         label='Deseo suscribirme a las novedades',
         required=False
-    )
-
-
-class LoginForm(forms.Form):
-    
-    email = forms.EmailField(label='Email',max_length=50, required=True)
-    password = forms.PasswordInput()
-    basesycondiciones = forms.BooleanField(
-        label='acepto las bases y condiciones',
-        required=True
     )
