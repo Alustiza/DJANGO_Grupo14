@@ -1,0 +1,68 @@
+{% extends './base.html' %}
+
+{% block titulo %} mate.AI - Recuperar contraseña {% endblock%}
+
+{% block contenido %}
+<section class="gradient-custom">
+    <div class="container py-5" style="height: 100vh;">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem; height: 80vh;">
+                    <div class="card-body pt-5 pb-4 text-center">
+                        <h1>
+                            {% load static %}
+                            <img src="{% static './publica/img/logo-mateai.svg' %}" height="80" alt="mate.ai"
+                                loading="lazy" />
+                            </a>
+                        </h1>
+                        <h4 class="fw my-4"> Olvidaste tu contraseña? </h4>
+
+                        <section class="py-5">
+                            <form id="recuperacion_form" name="recuperacion_form" action="{% url 'index' %}"
+                                method="POST">
+                                {% csrf_token %}
+
+                                <div class="form-outline form-white mb-4">
+                                    <input type="email" id="typeEmail" class="form-control form-control-lg" />
+                                    <label class="form-label" for="typeEmail">Ingresa tu email</label>
+                                </div>
+
+                                <div class="pt-4">
+                                    <p>Revisa tu correo electrónico para completar el proceso.</p>
+                                </div>
+
+
+                                <button class="btn btn-outline-light btn-lg px-5 mt-5 btn-rounded text-uppercase"
+                                    type="submit">Recuperar clave</button>
+                            </form>
+
+
+                        </section>
+
+                        <div>
+                            <a class="btn btn-outline-light btn-floating my-3"
+                                href="https://github.com/Alustiza/DJANGO_Grupo14" role="button">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+
+
+
+                        {% comment %} <div class="text-center pt-4">
+                            {{ copyright }}
+                        </div> {% endcomment %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock contenido %}
+
+{% block javascript %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+{% endblock javascript %}
+
+{% load static %}
+<script type="text/javascript" src="{% static '/publica/js/mdb.min.js'%}"></script>
