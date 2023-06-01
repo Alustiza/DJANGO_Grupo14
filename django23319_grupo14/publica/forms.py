@@ -28,6 +28,9 @@ class LoginForm(forms.Form):
         required=True
     )
 
+class RecuperarForm(forms.Form):
+    
+    email = forms.EmailField(label='Email',max_length=50, required=True)
 
 
 

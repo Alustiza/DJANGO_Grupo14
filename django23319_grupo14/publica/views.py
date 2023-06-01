@@ -6,35 +6,7 @@ from datetime import datetime
 from publica.forms import LoginForm
 from publica.forms import ContactoForm
 from publica.forms import RegistroForm
-
-# Create your views here.
-# def hola_mundo(request):
-#     return HttpResponse("Hola mundo Django!!!!")
-
-
-
-# def index(request):
-#     if(request.method=="GET"):
-#         titulo ="título cuando accedo por get"
-#     else:
-#         titulo = "título por otros métodos"
-    
-#     parametro_uno = request.GET.get("param")
-#     parametro_dos = request.GET.get("param2")
-    
-#     return HttpResponse(f"""proyecto Django {titulo} --- {parametro_uno} ---- {parametro_dos}""")
-
-# Para probarlo:
-# http://127.0.0.1:8000/?param=2024&param2=hola20202
-
-
-# def index(request):
-#     return render(request,'publica/index.html')
-
-
-# si quiero enviar un param por el navegador escribo en la url
-# http://127.0.0.1:8000/?param=lalaloopp&param2=lolo
-
+from publica.forms import RecuperarForm
 
 def index(request):
     mensaje=None
@@ -88,6 +60,23 @@ def home(request):
     
     return render(request,'publica/home.html',context)
 
+def recuperar(request):
+    mensaje=None
+    if(request.method=='POST'):
+        recuperar_form = RecuperarForm(request.POST)
+        mensaje='Contraseña restaurada'
+    else:
+        recuperar_form = RecuperarForm()
+    
+    copyright = 'CaC-Django 2023 - Comisión 23319 - Grupo 14  ©  //  Powered by OpenAI'
+
+    context = {                
+                'mensaje':mensaje,
+                'recuperar_form':recuperar_form,
+                'copyright':copyright
+            }
+    
+    return render(request,'publica/forgot_pass.html',context)
 
 
 

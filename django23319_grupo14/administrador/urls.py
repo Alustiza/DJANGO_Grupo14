@@ -4,5 +4,7 @@ from . import views
 
 urlpatterns = [
 
-path('administrador/', views.administrador, name='administrador'),
+    path('', views.index_admin, name='administrador'),
+
+
 ]
