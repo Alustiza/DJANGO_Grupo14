@@ -18,43 +18,51 @@
                         <h4 class="fw my-4"> Completa tus datos <br>para crear un nuevo usuario </h4>
 
                         <section class="py-5">
-                            <form id="regisrarse_form" name="regisrarse_form" action="{% url 'index' %}" method="POST">
+                            <form id="regisrarse_form" name="regisrarse_form" method="POST">
                                 {% csrf_token %}
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="nombre" id="typeName" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typeName">Nombre</label>
+                                    <input type="text" id="{{form.username.auto_id}}" name="{{form.username.name}}"
+                                        value="{{form.username.value}}" class="form-control form-control-lg" />
+                                    <label class="form-label">{{form.username.label}}</label>
                                 </div>
+                                <div class="error">{{form.username.errors}}</div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="apellido" id="typeSurname" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typeSurname">Apellido</label>
+                                    <input type="email" id="{{form.username.auto_id}}" name="{{form.email.name}}"
+                                        value="{{form.email.value}}" class="form-control form-control-lg" />
+                                    <label class="form-label">{{form.email.label}}</label>
                                 </div>
-
-                                <!-- <div class="form-outline form-white mb-4">
-                                    <input type="date" id="typeDate" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typeDate">Fecha de nacimiento</label>
-                                </div> -->
+                                <div class="error">{{form.email.errors}}</div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="email" id="typeEmail" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typeEmail">Email</label>
+                                    <input type="password" id="{{form.password1.auto_id}}"
+                                        name="{{form.password1.name}}" value="{{form.password1.value}}"
+                                        class="form-control form-control-lg" />
+                                    <label class="form-label">{{form.password1.label}}</label>
                                 </div>
+                                <div class="error">{{form.password1.errors}}</div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="password" id="typePassword" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typePassword">Password</label>
+                                    <input type="password" id="{{form.password2.auto_id}}"
+                                        name="{{form.password2.name}}" value="{{form.password2.value}}"
+                                        class="form-control form-control-lg" />
+                                    <label class="form-label">{{form.password2.label}}</label>
                                 </div>
+                                <div class="error">{{form.password2.errors}}</div>
 
                                 <div>
-                                    <input class="form-check-input" type="checkbox" id="aceptacion" name="aceptacion">
+                                    <input class="form-check-input" type="checkbox" id="aceptacion" name="aceptacion"
+                                        required=True>
                                     <label for="aceptacion" class="form-label text-white mb-2">
-                                        {{registro_form.aceptacion.label}}
+                                        'Acepto los términos y condiciones'
                                     </label><br>
                                 </div>
 
                                 <button class="btn btn-outline-light btn-lg px-5 mt-5 btn-rounded text-uppercase"
                                     type="submit">Registrar</button>
+
+                                <a href="{% url 'index' %}">Si ya tienes una cuenta, logueate.</a>
                             </form>
 
 

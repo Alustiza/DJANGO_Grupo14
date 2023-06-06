@@ -140,6 +140,7 @@ ENV/
 env.bak/
 venv.bak/
 venv-grupo14/
+grupo14/
 
 # Spyder project settings
 .spyderproject

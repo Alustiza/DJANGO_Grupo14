@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from datetime import datetime
-
 from publica.forms import LoginForm
-from publica.forms import ContactoForm
 from publica.forms import RegistroForm
 from publica.forms import RecuperarForm
 
@@ -23,33 +20,39 @@ def index(request):
     return render(request,'publica/index.html',context)
 
 def registrarse(request):
-    mensaje=None
-    if(request.method=='POST'):
-        registro_form = RegistroForm(request.POST)
-        mensaje='Usuario creado, ya puedes iniciar sesión'
+    if request.method == 'POST':
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Usuario creado, ya puedes iniciar sesión!')
+            return redirect('login')
     else:
-        registro_form = RegistroForm()
+        form = RegistroForm()
     
-    copyright = 'CaC-Django 2023 - Comisión 23319 - Grupo 14  ©  //  Powered by OpenAI'
+    return render(request,'publica/registrarse.html')
 
-    context = {                
-                'mensaje':mensaje,
-                'registro_form':registro_form,
-                'copyright':copyright
-            }
+# def registrarse(request):
+#     mensaje=None
+#     if(request.method=='POST'):
+#         registro_form = RegistroForm(request.POST)
+#         mensaje='Usuario creado, ya puedes iniciar sesión'
+#     else:
+#         registro_form = RegistroForm()
     
-    return render(request,'publica/registrarse.html',context)
+#     copyright = 'CaC-Django 2023 - Comisión 23319 - Grupo 14  ©  //  Powered by OpenAI'
+
+#     context = {                
+#                 'mensaje':mensaje,
+#                 'registro_form':registro_form,
+#                 'copyright':copyright
+#             }
+    
+#     return render(request,'publica/registrarse.html',context)
 
 
 def home(request):
     mensaje=None
-    if(request.method=='POST'):
-        contacto_form = ContactoForm(request.POST)
-        mensaje='Hemos recibido tus datos'
-        # acción para tomar los datos del formulario
-    else:
-        contacto_form = ContactoForm()
-    
+
     copyright = 'CaC-Django 2023 - Comisión 23319 - Grupo 14  ©  //  Powered by OpenAI'
 
     context = {                
@@ -77,86 +80,3 @@ def recuperar(request):
             }
     
     return render(request,'publica/forgot_pass.html',context)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-""" 
-
-def hola(request):
-    
-    copyright = 'prueba'
-
-    context = {'copyright2':copyright}
-    
-    return render(request,'publica/hola_openai.html',context)
- """
-
-""" def index(request):
-    if(request.method=='GET'):
-        titulo = 'Titulo cuando accedo por GET'
-    else:
-        titulo = 'Titulo cuando accedo por otro metodo'
-    parametro_uno = request.GET.get('param')
-    parametro_dos = request.GET.get('param2')
-    listado_cursos = [
-        {
-            'nombre':'Fullstack Java',
-            'descripcion':'Curso de Fullstack',
-            'categoria':'Programación',
-        },
-        {
-            'nombre':'Diseño UX/UI',
-            'descripcion':'🖌🎨',
-            'categoria':'Diseño',
-        },
-        {
-            'nombre':'Big Data',
-            'descripcion':'test',
-            'categoria':'Análisis de Datos',
-        },
-        {
-            'nombre':'Habilidades blandas',
-            'descripcion':'accenture',
-            'categoria':'Análisis de Datos',
-        },
-    ]
-
-    context = {'titulo':titulo,
-                'parametro_uno':parametro_uno,
-                'hoy':datetime.now(),
-                'cursos':listado_cursos
-            }
-    
-    return render(request,'publica/index.html',context) """
-
-
-# def saludar(request, nombre):
-#     return HttpResponse({nombre})
-
-
-# def ver_proyectos(request, anio,mes):
-#     return HttpResponse(f""" Proyectos del {mes} {anio}""")
-
-# def ver_proyectos_uno(request, anio,mes=1):
-#     return HttpResponse(f""" Proyectos del {mes} {anio}""")
-
-
-# def error_404(request, exception):
-#     return render(request, "404.html")
