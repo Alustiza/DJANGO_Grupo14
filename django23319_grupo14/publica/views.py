@@ -39,24 +39,25 @@ def registrarse(request):
 
     return render(request,'publica/registrarse.html', context)
 
-# def registrarse(request):
-#     mensaje=None
-#     if(request.method=='POST'):
-#         registro_form = RegistroForm(request.POST)
-#         mensaje='Usuario creado, ya puedes iniciar sesión'
-#     else:
-#         registro_form = RegistroForm()
+def signin(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     
-#     copyright = 'CaC-Django 2023 - Comisión 23319 - Grupo 14  ©  //  Powered by OpenAI'
-
-#     context = {                
-#                 'mensaje':mensaje,
-#                 'registro_form':registro_form,
-#                 'copyright':copyright
-#             }
-    
-#     return render(request,'publica/registrarse.html',context)
-
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            nxt = request.GET.get("next", None)
+            if nxt is None:
+                return redirect('home')
+            else:
+                return redirect(nxt)
+        else:
+            messages.error(request, f'Cuenta o password incorrecto, realice el login correctamente')
+    form = AuthenticationForm()
+    return render(request, 'publica/index.html', {'form': form, 'title': 'Log in'})
 
 def home(request):
     mensaje=None
