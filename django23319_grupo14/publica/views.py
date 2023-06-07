@@ -30,14 +30,14 @@ def registrarse(request):
         form = RegistroForm(request.POST)
         if form.is_valid():
             form.save()
-            mensaje = messages.success(request, f'Usuario creado, ya puedes iniciar sesión!')
+            messages.success(request, f'Usuario creado, ya puedes iniciar sesión!')
             return redirect('publica/index.html')
     else:
         form = RegistroForm()
     
-    context = {'form': form, 'mensaje': mensaje}
+    context = {'form': form}
 
-    return render(request,'publica/index.html', context)
+    return render(request,'publica/registrarse.html', context)
 
 # def registrarse(request):
 #     mensaje=None

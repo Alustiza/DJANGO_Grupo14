@@ -1,5 +1,7 @@
 from django.contrib import admin
-from administrador.models import  Perfil, Pregunta, Conversacion
+from administrador.models import  Perfil, Pregunta, Conversacion, Usuario
+from django.contrib.auth.models import Group
+from django.contrib.auth.admin import UserAdmin, GroupAdmin
 
 # Register your models here.
 
@@ -27,3 +29,5 @@ class PerfilAdmin(admin.ModelAdmin):
 sitio_admin = MateAdminSite(name="mateadmin")
 sitio_admin.register(Pregunta, PreguntaAdmin)
 sitio_admin.register(Perfil,PerfilAdmin)
+sitio_admin.register(Usuario,UserAdmin)
+sitio_admin.register(Group, GroupAdmin)
