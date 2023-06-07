@@ -8,7 +8,7 @@ class Usuario(AbstractUser):
 class Perfil(models.Model):
     user = models.OneToOneField(Usuario, on_delete=models.CASCADE, primary_key=True)
     telefono = models.CharField(max_length=20,verbose_name='Teléfono')
-    premium = models.BooleanField(default=0)
+    premium = models.BooleanField(default=1)
     foto = models.ImageField(upload_to='perfiles/',null=True,verbose_name='Foto Perfil')
 
     def __str__(self):

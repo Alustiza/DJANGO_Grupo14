@@ -1,9 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+
+from django.contrib import messages
+#from django.conf import settings
 
 from publica.forms import LoginForm
 from publica.forms import RegistroForm
 from publica.forms import RecuperarForm
+
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
 
 def index(request):
     mensaje=None
@@ -24,12 +30,14 @@ def registrarse(request):
         form = RegistroForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Usuario creado, ya puedes iniciar sesión!')
-            return redirect('login')
+            mensaje = messages.success(request, f'Usuario creado, ya puedes iniciar sesión!')
+            return redirect('publica/index.html')
     else:
         form = RegistroForm()
     
-    return render(request,'publica/registrarse.html')
+    context = {'form': form, 'mensaje': mensaje}
+
+    return render(request,'publica/index.html', context)
 
 # def registrarse(request):
 #     mensaje=None
@@ -58,7 +66,6 @@ def home(request):
     context = {                
                 'copyright':copyright,
                 'mensaje':mensaje,
-                'contacto_form':contacto_form
             }
     
     return render(request,'publica/home.html',context)

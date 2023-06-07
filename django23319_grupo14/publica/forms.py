@@ -1,33 +1,24 @@
 from django import forms
-from django.forms import ValidationError
-import re
+# import re
 
 from administrador.models import Usuario
 from django.contrib.auth.forms import UserCreationForm
 
-# class RegistroForm(forms.Form):
-#     nombre = forms.CharField(
-#         label='Nombre',
-#         widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Solo letras'}))
-#     apellido = forms.CharField(
-#         label='Apellido', 
-#         widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Solo letras'}))
-#     email = forms.EmailField(
-#         label='Email',
-#         max_length=50,
-#         error_messages={'required': 'Por favor completa el campo'},
-#         widget=forms.TextInput(attrs={'class':'form-control','type':'email'}))
-#     password = forms.CharField(widget=forms.PasswordInput, label="Password")
-#     aceptacion = forms.BooleanField(
-#         label='Acepto los términos y condiciones',
-#         required=True,
-#         widget=forms.CheckboxInput(attrs={'class':'form-check-input','value':1}))
-
 class RegistroForm(UserCreationForm):
-    username = forms.CharField(label='Nombre', widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Solo letras'}))
+         
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].label = 'Contraseña'
+        self.fields['password2'].label = 'Confirme contraseña'
+
     class Meta:
         model = Usuario
         fields = ['username','email','password1','password2']
+        labels = {'username': 'Nombre de usuario', 'email': 'Correo electrónico'}
+        error_messages={
+           "username": {"required": "Este campo es obligatorio"},
+       }
+
 
 class LoginForm(forms.Form):
     
