@@ -11,6 +11,8 @@ from publica.forms import RecuperarForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 
+from django.contrib.auth.decorators import login_required
+
 def index(request):
     mensaje=None
     if(request.method=='POST'):
@@ -39,6 +41,7 @@ def registrarse(request):
 
     return render(request,'publica/registrarse.html', context)
 
+@login_required
 def signin(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -59,6 +62,7 @@ def signin(request):
     form = AuthenticationForm()
     return render(request, 'publica/index.html', {'form': form, 'title': 'Log in'})
 
+@login_required
 def home(request):
     mensaje=None
 
