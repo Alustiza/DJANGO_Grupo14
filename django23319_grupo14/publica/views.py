@@ -31,7 +31,7 @@ def registrarse(request):
         if form.is_valid():
             form.save()
             messages.success(request, f'Usuario creado, ya puedes iniciar sesión!')
-            return redirect('publica/index.html')
+            return redirect('index')
     else:
         form = RegistroForm()
     
