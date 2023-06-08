@@ -1,12 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-from datetime import datetime
+from django.contrib import messages
+#from django.conf import settings
 
 from publica.forms import LoginForm
-from publica.forms import ContactoForm
 from publica.forms import RegistroForm
 from publica.forms import RecuperarForm
+
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     mensaje=None
@@ -23,39 +28,49 @@ def index(request):
     return render(request,'publica/index.html',context)
 
 def registrarse(request):
-    mensaje=None
-    if(request.method=='POST'):
-        registro_form = RegistroForm(request.POST)
-        mensaje='Usuario creado, ya puedes iniciar sesión'
+    if request.method == 'POST':
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Usuario creado, ya puedes iniciar sesión!')
+            return redirect('index')
     else:
-        registro_form = RegistroForm()
+        form = RegistroForm()
     
-    copyright = 'CaC-Django 2023 - Comisión 23319 - Grupo 14  ©  //  Powered by OpenAI'
+    context = {'form': form}
 
-    context = {                
-                'mensaje':mensaje,
-                'registro_form':registro_form,
-                'copyright':copyright
-            }
+    return render(request,'publica/registrarse.html', context)
+
+@login_required
+def signin(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     
-    return render(request,'publica/registrarse.html',context)
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            nxt = request.GET.get("next", None)
+            if nxt is None:
+                return redirect('home')
+            else:
+                return redirect(nxt)
+        else:
+            messages.error(request, f'Cuenta o password incorrecto, realice el login correctamente')
+    form = AuthenticationForm()
+    return render(request, 'publica/index.html', {'form': form, 'title': 'Log in'})
 
-
+@login_required
 def home(request):
     mensaje=None
-    if(request.method=='POST'):
-        contacto_form = ContactoForm(request.POST)
-        mensaje='Hemos recibido tus datos'
-        # acción para tomar los datos del formulario
-    else:
-        contacto_form = ContactoForm()
-    
+
     copyright = 'CaC-Django 2023 - Comisión 23319 - Grupo 14  ©  //  Powered by OpenAI'
 
     context = {                
                 'copyright':copyright,
                 'mensaje':mensaje,
-                'contacto_form':contacto_form
             }
     
     return render(request,'publica/home.html',context)
@@ -77,86 +92,3 @@ def recuperar(request):
             }
     
     return render(request,'publica/forgot_pass.html',context)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-""" 
-
-def hola(request):
-    
-    copyright = 'prueba'
-
-    context = {'copyright2':copyright}
-    
-    return render(request,'publica/hola_openai.html',context)
- """
-
-""" def index(request):
-    if(request.method=='GET'):
-        titulo = 'Titulo cuando accedo por GET'
-    else:
-        titulo = 'Titulo cuando accedo por otro metodo'
-    parametro_uno = request.GET.get('param')
-    parametro_dos = request.GET.get('param2')
-    listado_cursos = [
-        {
-            'nombre':'Fullstack Java',
-            'descripcion':'Curso de Fullstack',
-            'categoria':'Programación',
-        },
-        {
-            'nombre':'Diseño UX/UI',
-            'descripcion':'🖌🎨',
-            'categoria':'Diseño',
-        },
-        {
-            'nombre':'Big Data',
-            'descripcion':'test',
-            'categoria':'Análisis de Datos',
-        },
-        {
-            'nombre':'Habilidades blandas',
-            'descripcion':'accenture',
-            'categoria':'Análisis de Datos',
-        },
-    ]
-
-    context = {'titulo':titulo,
-                'parametro_uno':parametro_uno,
-                'hoy':datetime.now(),
-                'cursos':listado_cursos
-            }
-    
-    return render(request,'publica/index.html',context) """
-
-
-# def saludar(request, nombre):
-#     return HttpResponse({nombre})
-
-
-# def ver_proyectos(request, anio,mes):
-#     return HttpResponse(f""" Proyectos del {mes} {anio}""")
-
-# def ver_proyectos_uno(request, anio,mes=1):
-#     return HttpResponse(f""" Proyectos del {mes} {anio}""")
-
-
-# def error_404(request, exception):
-#     return render(request, "404.html")

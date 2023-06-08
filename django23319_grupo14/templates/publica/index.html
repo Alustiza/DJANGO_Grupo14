@@ -18,24 +18,41 @@
               </h1>
               <h2 class="fw-bold py-2"> Bienvenido! </h2>
               <p class="text-white-50 my-3">Hola, soy tu compañero de estudio de matemática.</p>
-              <p class="text-white-50 my-3">Inicia sesión con tu correo y contraseña.</p>
+              <p class="text-white-50 my-3">Inicia sesión con tu usuario y contraseña.</p>
 
               <section>
                 <div class="form-outline form-white my-2">
-                  <form id="login_form" name="login_form" action="{% url 'home' %}" method="POST">
+                  {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{message}}
+                  </div>
+                  {% endfor %}
+                  {% if form.non_field_errors %}
+                  {% for error in form.non_field_errors %}
+                  <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+
+                  <form id="login_form" name="login_form" method="POST">
                     {% csrf_token %}
 
-                    <div class="form-outline form-white mb-4">
-                      <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                      <label class="form-label" for="tyepeEmailX">Email</label>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                      <input type="text" id="{{ form.username.auto_id }}" name="{{ form.username.name }}"
+                        class="form-control form-control-lg" value="{{ form.username.value | default:'' }}" />
+                      <label class="form-label">Nombre de usuario</label>
                     </div>
+                    <div class="error" style="text-align: left;">{{form.email.errors}}</div>
 
-                    <div class="form-outline form-white mb-4">
-                      <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                      <label class="form-label" for="typePasswordX">Password</label>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                      <input type="password" id="{{ form.password.auto_id }}" name="{{ form.password.name }}"
+                        class="form-control form-control-lg" value="{{ form.password.value | default:'' }}" />
+                      <label class="form-label">Contraseña</label>
                     </div>
-
-
+                    <div class="error" style="text-align: left;">{{form.password.errors}}</div>
 
                     <button class="btn btn-outline-light btn-lg px-5 btn-rounded text-uppercase" type="submit">Iniciar
                       sesión</button>
