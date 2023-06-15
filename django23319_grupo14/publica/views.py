@@ -41,7 +41,6 @@ def registrarse(request):
 
     return render(request,'publica/registrarse.html', context)
 
-@login_required
 def signin(request):
     if request.user.is_authenticated:
         return redirect('home')
