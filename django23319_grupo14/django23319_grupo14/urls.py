@@ -18,8 +18,11 @@ from django.urls import path
 from django.urls.conf import include
 from administrador.admin import sitio_admin
 
+
+
 urlpatterns = [
     path('admin/', sitio_admin.urls),
     path('',include('publica.urls')),
+    path('',include('chat.urls')),
 #    path('administrador/',include('administrador.urls')),
 ]
