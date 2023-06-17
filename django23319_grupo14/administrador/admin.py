@@ -24,7 +24,7 @@ class PerfilAdmin(admin.ModelAdmin):
     search_fields = ("user", "premium")
 
 class ConversacionAdmin(admin.ModelAdmin):
-    list_display = ("fecha", "conversacion")
+    list_display = ("fecha",)
     list_filter = ("fecha",)
 
 # registrar de modelos de admin personalizados

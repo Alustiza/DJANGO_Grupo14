@@ -20,7 +20,7 @@ class Perfil(models.Model):
 
 class Conversacion(models.Model):
     fecha = models.DateField(verbose_name='Fecha de conversacion',null=True,default=None)
-    conversacion = models.CharField(max_length=3000,verbose_name='conversacion')
+    id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE) #relacion muchos a uno 
 
     def __str__(self):
         return f"{self.conversacion}"
