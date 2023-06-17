@@ -1,11 +1,10 @@
 from django import forms
-# import re
-
 from administrador.models import Usuario
 from django.contrib.auth.forms import UserCreationForm
 
 class RegistroForm(UserCreationForm):
-         
+    email = forms.EmailField(required=True)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password1'].label = 'Contraseña'
@@ -17,8 +16,8 @@ class RegistroForm(UserCreationForm):
         labels = {'username': 'Nombre de usuario', 'email': 'Correo electrónico'}
         error_messages={
            "username": {"required": "Este campo es obligatorio"},
+           "email": {"required": "Este campo es obligatorio"},
        }
-
 
 class LoginForm(forms.Form):
     

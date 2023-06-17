@@ -2,16 +2,26 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from django.contrib import messages
-#from django.conf import settings
+from django.urls import reverse_lazy
 
-from publica.forms import LoginForm
-from publica.forms import RegistroForm
-from publica.forms import RecuperarForm
+from publica.forms import LoginForm, RegistroForm, RecuperarForm
 
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
+#from django.contrib.auth import authenticate, login, logout
+
+#from django.contrib.auth.forms import AuthenticationForm
 
 from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
+
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'publica/password_reset.html'
+    email_template_name = 'publica/password_reset_email.html'
+    subject_template_name = 'publica/password_reset_subject.txt'
+    success_message = "Te enviamos un correo electrónico para continuar el proceso de recuperación de contraseña. " \
+                      " Si no lo recibiste, verifica el correo electrónico ingresado o la carpeta spam."
+    success_url = reverse_lazy('index')
 
 def index(request):
     mensaje=None
@@ -41,25 +51,23 @@ def registrarse(request):
 
     return render(request,'publica/registrarse.html', context)
 
-def signin(request):
-    if request.user.is_authenticated:
-        return redirect('home')
+class MateLoginView(LoginView):
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse_lazy('home') 
     
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            nxt = request.GET.get("next", None)
-            if nxt is None:
-                return redirect('home')
-            else:
-                return redirect(nxt)
-        else:
-            messages.error(request, f'Cuenta o password incorrecto, realice el login correctamente')
-    form = AuthenticationForm()
-    return render(request, 'publica/index.html', {'form': form, 'title': 'Log in'})
+    def form_invalid(self, form):
+        messages.error(self.request,'Cuenta o password incorrecto. Intente nuevamente')
+        return self.render_to_response(self.get_context_data(form=form))
+
+class MateLogoutView(LogoutView):
+    next_page = 'home'
+
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        messages.add_message(request, messages.INFO, 'Se ha cerrado la sesión correctamente.')
+        return response
 
 @login_required
 def home(request):

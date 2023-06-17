@@ -1,0 +1,45 @@
+{% extends 'publica/base.html' %}
+
+{% block titulo %} mate.AI - Cerró sesión {% endblock%}
+
+{% block contenido %}
+<section class="gradient-custom" style="height: 100vh;">
+    <div class="container py-5 gradient-custom">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-8">
+                <div class="card bg-dark text-white" style="border-radius: 0.8rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <div class="mb-md-5 mt-md-4">
+                            <h1>
+                                {% load static %}
+                                <img src="{% static './publica/img/logo-mateai.svg' %}" height="100rem" alt="mate.ai"
+                                    loading="lazy">
+                                </a>
+                            </h1>
+                        </div>
+
+                        <div class="mb-md-5 mt-md-4">
+                            <h5 class="text-white my-3 py-3">Cerraste sesión! Hasta la próxima!</h5>
+                        </div>
+
+                        <div>
+                            <a class="btn btn-outline-light btn-floating m-2"
+                                href="https://github.com/Alustiza/DJANGO_Grupo14" role="button"><i
+                                    class="fab fa-github"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock contenido %}
+{% block javascript %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+{% endblock javascript %}
+
+
+{% load static %}
+<script type="text/javascript" src="{% static '/publica/js/mdb.min.js'%}"></script>
