@@ -12,6 +12,7 @@
 
 {% load static %}
 <link rel="stylesheet" href="{% static '/publica/css/mdb.min.css'%}">
+<link rel="stylesheet" href="{% static '/publica/css/styles.css'%}">
 
 
 {% block contenido %}
@@ -147,18 +148,16 @@
               <div class="card-header d-flex justify-content-between p-3">
                 <p class="fw-bold mb-0">Pregunta Usuario: </p>
                 <p class="text-muted small mb-0">
-                  <i class="far fa-clock"></i> {{ current_time }}
+                  <i class="far fa-clock"></i> {{ timestamp|date:"Y-m-d" }} {{ timestamp|time:"H:i:s" }}
                 </p>
               </div>
-              <div class="card-body">
+              <div class="card-body pregunta">
                 <p class="mb-0">
                   
 
-    <div>
-      <div>
-        {{question}}
-      </div>
-    </div>
+
+        {{question | safe}}
+
 
 
                 </p>
@@ -167,21 +166,16 @@
           </li>
           <li class="d-flex justify-content-between mb-4">
             
-            <div class="card">
+            <div class="card ">
               <div class="card-header d-flex justify-content-between p-3">
                 <p class="fw-bold mb-0">Respuesta OpenAi: </p>
                 <p class="text-muted small mb-0">
-                  <i class="far fa-clock"></i> {{ current_time }}
+                  <i class="far fa-clock"></i> {{ timestamp|date:"Y-m-d" }} {{ timestamp|time:"H:i:s" }}
                 </p>
               </div>
-              <div class="card-body">
+              <div class="card-body respuesta">
                 <p class="mb-0">
-                  
-    
-    <div>
       {{response | safe}}
-    </div>
-
 
                 </p>
               </div>
