@@ -34,7 +34,7 @@ def chatbot(request):
     if api_key is not None and request.method == "POST":
         
 
-        prompt = f"{context, previous_response, user_input}"
+        prompt = f"{context, user_input}"
 
         response = openai.Completion.create(
             engine = "text-davinci-003",
