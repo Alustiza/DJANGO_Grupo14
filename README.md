@@ -1,11 +1,5 @@
 # DJANGO_Grupo14
-TP Entrega Final
-Comisión: 23.319
-Codo a Codo 2023
-
-///////
-
-mate.ai | Tutor de Matemáticas para adolescentes
+Proyecto final Grupo 14
 
 ///////
 
@@ -22,6 +16,7 @@ Patané Daniela
 danielapatane@gmail.com
 
 ///////
+Tutor de Matemáticas para adolescentes
 
 Utilizaremos la librería de Open Ai para gestionar las consultas y vamos a desarrollar aplicaciones de front para la gestión de los alumnos.
 
