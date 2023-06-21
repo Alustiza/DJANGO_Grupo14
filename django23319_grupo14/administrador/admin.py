@@ -1,37 +1,39 @@
-from django.contrib import admin
-from administrador.models import  Perfil, Pregunta, Conversacion, Usuario
-from django.contrib.auth.models import Group
-from django.contrib.auth.admin import UserAdmin, GroupAdmin
 
-# Register your models here.
 
-#admin.site.register(Conversacion)
+# from django.contrib import admin
+# from administrador.models import  Perfil, Pregunta, Conversacion, Usuario
+# from django.contrib.auth.models import Group
+# from django.contrib.auth.admin import UserAdmin, GroupAdmin
 
-class MateAdminSite(admin.AdminSite):
-    site_header = "Administración Mate.AI"
-    site_title = "Administración superuser"
-    index_title = "Administración del sitio"
-    empty_value_display = "No hay datos para mostrar"
+# # Register your models here.
 
-class PreguntaAdmin(admin.ModelAdmin):
-    list_display = ("id", "fecha", "pregunta", "respuesta", "id_conversacion")
-    list_editable = ("pregunta", "respuesta")
-    search_fields = ("pregunta", "respuesta")
+# #admin.site.register(Conversacion)
 
-class PerfilAdmin(admin.ModelAdmin):
-    list_display = ("user", "telefono", "premium")
-    list_filter = ("premium",)
-    search_fields = ("user", "premium")
+# class MateAdminSite(admin.AdminSite):
+#     site_header = "Administración Mate.AI"
+#     site_title = "Administración superuser"
+#     index_title = "Administración del sitio"
+#     empty_value_display = "No hay datos para mostrar"
 
-class ConversacionAdmin(admin.ModelAdmin):
-    list_display = ("fecha",)
-    list_filter = ("fecha",)
+# class PreguntaAdmin(admin.ModelAdmin):
+#     list_display = ("id", "fecha", "pregunta", "respuesta", "id_conversacion")
+#     list_editable = ("pregunta", "respuesta")
+#     search_fields = ("pregunta", "respuesta")
 
-# registrar de modelos de admin personalizados
+# class PerfilAdmin(admin.ModelAdmin):
+#     list_display = ("user", "telefono", "premium")
+#     list_filter = ("premium",)
+#     search_fields = ("user", "premium")
 
-sitio_admin = MateAdminSite(name="mateadmin")
-sitio_admin.register(Pregunta, PreguntaAdmin)
-sitio_admin.register(Perfil,PerfilAdmin)
-sitio_admin.register(Usuario,UserAdmin)
-sitio_admin.register(Group, GroupAdmin)
-sitio_admin.register(Conversacion, ConversacionAdmin)
+# class ConversacionAdmin(admin.ModelAdmin):
+#     list_display = ("fecha",)
+#     list_filter = ("fecha",)
+
+# # registrar de modelos de admin personalizados
+
+# sitio_admin = MateAdminSite(name="mateadmin")
+# sitio_admin.register(Pregunta, PreguntaAdmin)
+# sitio_admin.register(Perfil,PerfilAdmin)
+# sitio_admin.register(Usuario,UserAdmin)
+# sitio_admin.register(Group, GroupAdmin)
+# sitio_admin.register(Conversacion, ConversacionAdmin)

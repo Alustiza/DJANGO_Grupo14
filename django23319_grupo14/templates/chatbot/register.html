@@ -1,0 +1,53 @@
+{% extends 'chatbot/base.html' %}
+
+{% block title %}Registrate{% endblock %}
+
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'chatbot/css/register.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="register-container">
+  <div class="card">
+    {% load static %}
+    <img src="{% static '/chatbot/img/logo-mateai.svg' %}" class="logo" alt="mate.ai" loading="lazy">
+    <div class="card-header">Creá tu cuenta</div>
+    <div class="card-body">
+      {% if error_message %}
+        <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">nombre de usuario</label>
+          <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="email">email</label>
+          <input type="text" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password1">contraseña</label>
+          <input type="password" class="form-control" id="password1" name="password1" required>
+        </div>
+        <div class="form-group">
+          <label for="password2">confirmar contraseña</label>
+          <input type="password" class="form-control" id="password2" name="password2" required>
+        </div>
+        <button type="submit">REGISTRATE</button>
+      </form>
+      <br>
+      <p>Ya estoy registrado<br>
+        <a href="logout">Iniciar sesión</a>
+      </p>
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% load static %}
+{% include './footer.html' %}
+{% endblock footer %}

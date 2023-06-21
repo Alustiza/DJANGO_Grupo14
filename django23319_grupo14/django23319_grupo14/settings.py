@@ -43,11 +43,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'publica',
-    'administrador',
-    'chat',
-    'django_extensions',
+    # 'publica',
+    # 'administrador',
+    # 'chat',
+    'chatbot',
+    # 'django_extensions',
 ]
+
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -157,6 +162,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'administrador.Usuario'
-LOGIN_URL = '/accounts/login'
-LOGIN_REDIRECT_URL = 'index'
+
+
+# AUTH_USER_MODEL = 'administrador.Usuario'
+# LOGIN_URL = '/accounts/login'
+# LOGIN_REDIRECT_URL = 'index'
