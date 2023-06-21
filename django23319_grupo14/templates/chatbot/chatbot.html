@@ -97,11 +97,17 @@
 
     <form class="message-form">
       {%csrf_token%}
-      <div class="form-outline">
-        <input type="text" id="formControlLg" class="form-control form-control-lg message-input" placeholder="Qué vamos a aprender hoy?...">
-        <label class="form-label" for="formControlLg">Ingresá tu pregunta...</label>
+    <div class="form-outline ">
+        <input type="textarea" id="formControl" class="form-control form-control-lg message-input" placeholder="Qué vamos a aprender hoy?...">
+        <label class="form-label" for="formControl">Ingresá tu pregunta...</label>
         
-      </div>
+      </div> 
+
+      {% comment %} <div class="form-outline">
+        <textarea class="form-control form-control-lg message-input " id="textAreaExample" rows="2" placeholder="Qué vamos a aprender hoy?..."></textarea>
+        <label class="form-label" for="textAreaExample">Ingresá tu pregunta...</label>
+      </div> {% endcomment %}
+
       <div class="form-outline">
         <button type="submit" class="btn btn-primary btn-send">Enviar</button>
       </div>

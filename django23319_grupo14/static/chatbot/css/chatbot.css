@@ -71,23 +71,23 @@
 
     .message-input {
       flex: 1;
-      border-radius: 0;
-      border-right: none;
+      
+      
       margin-top: 20px; 
       box-sizing: border-box;
-      border-radius: 4px;
-      border: 1px solid #ffffff;
-      padding: 40px 40px 20px 20px;
-      font-size: 30px;
-      width: 75%;
-      margin-top: 20px;
-      color: white;
-      font-size: 40px;
+      
+      padding: 60px 40px 20px 20px;
+
+      
+      
     }
 
     .form-outline{
       min-width: 75%;
-      font-size: 15px;
+      font-size: 26px;
+      margin-left: 10px;
+      
+      
     }
 
     .btn-send {
