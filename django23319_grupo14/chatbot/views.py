@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth import get_user_model
 
 
 api_key = os.getenv("OPENAI_KEY", None)
@@ -60,9 +60,6 @@ def register(request):
             return render(request, 'chatbot/register.html', {'error_message': error_message})
     return render(request, 'chatbot/register.html')
 
-
-
-
 def profile(request):
 
      if(request.method=='POST'):
@@ -74,6 +71,33 @@ def profile(request):
      context = {'profile_form': profile_form}
 
      return render(request, 'chatbot/profile.html',context)
+
+"""
+User = get_user_model()
+
+@login_required
+def EditProfile(request):
+    user = request.user.id
+    profile = Perfil.objects.get(user__id=user)
+    user_basic_info = User.objects.get(id=user)
+
+    if request.method == 'POST':
+        form=EditProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            user_basic_info.user = form.cleaned_data.get('user')
+            user_basic_info.telefono = form.cleaned_data.get('telefono')
+            profile.foto = form.cleaned_data.get('foto')
+            profile.save()
+            user_basic_info.save()
+            return redirect('profile', user=request.user.user)
+    else:
+        form=ProfileForm(instance=profile)
+
+    context={
+        'form':form,
+    }
+
+    return render(request, 'profile.html', context)"""
 
 
 def logout(request):

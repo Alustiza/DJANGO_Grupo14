@@ -13,7 +13,7 @@ class Chat(models.Model):
     
 
 class Perfil(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
     telefono = models.CharField(max_length=20,verbose_name='Teléfono', blank=True)
     premium = models.BooleanField(default=False)
     

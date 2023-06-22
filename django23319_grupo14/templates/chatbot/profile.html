@@ -37,12 +37,24 @@
 
 </div>
 
+<form class="form-horizontal dark:text-dark-txt" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+  
+
+
 
 {% endblock %}
+
+{% block footer %}
+{% load static %}
+{% include './footer.html' %}
+{% endblock footer %}
 
 
 
 {% block scripts %}
+
 {% comment %} JS para el pop up del perfil {% endcomment %}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
 {% endblock scripts%}
+
