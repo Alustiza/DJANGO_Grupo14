@@ -43,9 +43,9 @@
           <div class="message-text">
             <div class="message-sender">
               
-              <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle avatar-messages" 
+              <img src="{{user.profile.foto.url}}" class="rounded-circle avatar-messages" 
                     alt="avatar usuario" loading="lazy" />
-                    <b>{{user.username}}</b>
+                    <span class="txtusuario">{{user.username}}</span>
             </div>
             <br>
             <div class="message-content">
@@ -63,7 +63,8 @@
 
               {% load static %}
               <img src="{% static '/chatbot/img/avatar-chat.png' %}" class="rounded-circle avatar-messages" alt="mate.ai" loading="lazy">
-              <b>mate.ai</b>
+              
+              <span class="txtusuario">mate.ai</span>
 
             </div>
             <br>
@@ -87,20 +88,14 @@
   </div>
   <form class="message-form">
     {%csrf_token%}
- <div class="input-group">
-      <input type="text" class="form-control message-input" placeholder="Qué vamos a aprender hoy?...">
-      <div class="input-group-append">
-        <button type="submit" class="btn btn-primary btn-send">Enviar</button>
-      </div>
-    </div>  
 
 
-    {% comment %} <div class="form-outline">
-      <input type="text" class="form-control message-input" placeholder="Qué vamos a aprender hoy?...">
-      <div class="form-outline">
+    <div class="">
+      <input type="text" class="message-input" placeholder="Qué vamos a estudiar hoy?...">
+      
         <button type="submit" class="btn btn-primary btn-send">Enviar</button>
       </div>
-    </div>  {% endcomment %}
+    </div> 
 
 
 
@@ -132,9 +127,9 @@
         <div class="message-text">
           <div class="message-sender">
               
-            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle avatar-messages" 
+            <img src="{{user.profile.foto.url}}" class="rounded-circle avatar-messages" 
                   alt="avatar usuario" loading="lazy" />
-                  <b>{{user.username}}</b>
+                  <span class="txtusuario">{{user.username}}</span>
           </div>
           <br>
             <div class="message-content">
@@ -167,7 +162,7 @@
 
             {% load static %}
             <img src="{% static '/chatbot/img/avatar-chat.png' %}" class="rounded-circle avatar-messages" alt="mate.ai" loading="lazy">
-            <b>mate.ai</b>
+            <span class="txtusuario">mate.ai</span>
 
           </div>
           <br>

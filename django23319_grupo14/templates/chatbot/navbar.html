@@ -22,28 +22,32 @@
         <div class="navbar-usrname">
             <b>Hola, {{user.username}}</b>
         </div>
+
+        {% if user.profile.foto.url == "" %}
+
+        <div class="navbar-usrname navbar-botones"><a class="navbar-botones" href="chatbot">ir al chat</a> <a class="navbar-botones" href="profile">editar perfil</a>   <a  class="navbar-botones" href="logout">cerrar sesión</a></div>
+        {% else %}
         <!-- Avatar -->
         <div class="dropdown">
             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
                 role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="60"
-                    alt="Black and White Portrait of a Man" loading="lazy" />
+                <img src="{{user.profile.foto.url}}" class="rounded-circle  navbar-avatar"  loading="lazy" />
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                 <li>
-                    <a class="dropdown-item" href="chatbot">Ir al Chat</a>
+                    <a class="dropdown-item" href="chatbot">ir al Chat</a>
                 </li>
 
                 <li>
-                    <a class="dropdown-item" href="profile">Editar perfil</a>
+                    <a class="dropdown-item" href="profile">editar perfil</a>
                 </li>
              
                 <li>
-                    <a class="dropdown-item" href="logout">Cerrar sesión</a>
+                    <a class="dropdown-item" href="logout">cerrar sesión</a>
                 </li>
             </ul>
         </div>
-
+        {% endif %}
         {% else %}
 
         <div class="card-header bg-dark text-white"><a class="logoNavBar" href="login">Iniciar sesión</a>   <a class="logoNavBar" href="register">Registrate</a></div>

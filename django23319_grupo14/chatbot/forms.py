@@ -33,6 +33,7 @@ from django.forms import ModelForm
 
 class ProfileForm(ModelForm):
 
+    
     class Meta:
         model = Perfil
         fields = ['user', 'telefono', 'foto']
@@ -42,13 +43,10 @@ class ProfileForm(ModelForm):
             'telefono': forms.NumberInput(attrs={'class': 'form-control'}),
             'foto': forms.FileInput(attrs={'class': 'form-control'}),
         }
-"""
-def save_profile(request):
-    form = ProfileForm(request.POST, request.FILES)
 
-    if request.POST.get('autocomplete_user'):
-        form.cleaned_data['user'] = request.POST.get('autocomplete_user')
 
-    profile = form.save()
-    return redirect('profile')
-"""
+
+
+
+
+

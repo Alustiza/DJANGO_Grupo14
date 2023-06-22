@@ -24,3 +24,6 @@ class Perfil(models.Model):
   
     class Meta():
         verbose_name_plural = "Perfiles"
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
