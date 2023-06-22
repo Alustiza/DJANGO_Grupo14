@@ -3,7 +3,8 @@ import os
 
 from django.contrib import auth
 from django.contrib.auth.models import User
-from .models import Chat
+from chatbot.models import Chat, Perfil
+from chatbot.forms import ProfileForm
 
 from django.utils import timezone
 
@@ -59,6 +60,22 @@ def register(request):
             return render(request, 'chatbot/register.html', {'error_message': error_message})
     return render(request, 'chatbot/register.html')
 
+
+
+
+def profile(request):
+
+     if(request.method=='POST'):
+        profile_form = Perfil.objects.filter(user=request.user)
+        #profile_form = ProfileForm(request.POST)
+     else:
+        profile_form = ProfileForm()
+
+     context = {'profile_form': profile_form}
+
+     return render(request, 'chatbot/profile.html',context)
+
+
 def logout(request):
      auth.logout(request)
      return redirect('login')
@@ -112,5 +129,4 @@ def chatbot(request):
  
     
     return render(request,"chatbot/chatbot.html", {'chats': chats})
-
 

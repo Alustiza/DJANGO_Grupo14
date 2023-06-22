@@ -6,5 +6,6 @@ urlpatterns = [
     path('',views.login, name="login"),
     path('register',views.register, name="register"),
     path('chatbot', login_required(views.chatbot), name="chatbot"),
+    path('profile', login_required(views.profile), name="profile"),
     path('logout',views.logout, name="logout"),
 ]

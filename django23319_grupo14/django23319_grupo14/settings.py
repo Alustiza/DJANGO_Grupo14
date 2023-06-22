@@ -43,11 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'publica',
-    # 'administrador',
-    # 'chat',
     'chatbot',
-    # 'django_extensions',
+    'django_autocomplete_light'
 ]
 
 
