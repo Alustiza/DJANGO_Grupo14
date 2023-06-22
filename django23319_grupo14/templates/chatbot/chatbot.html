@@ -168,13 +168,9 @@
   });
 
 </script>
-
-
 {% endblock %}
 
-
-
-{% comment %} 
-<footer class="bg-dark text-center text-white">
-  {% block footer %} {% endblock footer %}
-</footer> {% endcomment %}
+{% block scripts %}
+{% comment %} JS para el pop up del perfil {% endcomment %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+{% endblock scripts%}
