@@ -54,9 +54,11 @@
       left: 0;
       right: 0;
       padding: 10px;
-      background-color:black;
+      background-color:#fafafa;
       min-height: 200px;
     }
+
+    
 
  /*    .message-input {
       flex: 1;

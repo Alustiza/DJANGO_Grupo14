@@ -87,12 +87,26 @@
   </div>
   <form class="message-form">
     {%csrf_token%}
-    <div class="input-group">
+ <div class="input-group">
       <input type="text" class="form-control message-input" placeholder="Qué vamos a aprender hoy?...">
       <div class="input-group-append">
         <button type="submit" class="btn btn-primary btn-send">Enviar</button>
       </div>
-    </div>
+    </div>  
+
+
+    {% comment %} <div class="form-outline">
+      <input type="text" class="form-control message-input" placeholder="Qué vamos a aprender hoy?...">
+      <div class="form-outline">
+        <button type="submit" class="btn btn-primary btn-send">Enviar</button>
+      </div>
+    </div>  {% endcomment %}
+
+
+
+    
+
+    
 
     
   </form>
