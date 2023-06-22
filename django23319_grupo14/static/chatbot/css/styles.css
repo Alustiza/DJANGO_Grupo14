@@ -1,0 +1,46 @@
+.logo {
+    width: 360px;
+    padding-top: 20px;
+}
+
+
+.logoNavBar {
+    width: 260px;
+    padding: 8px 0px;
+}
+
+.navbar-usrname {
+    color: white;
+    padding-right: 40px;
+}
+
+.navbar-botones {
+    color: white;
+    padding-right: 40px;
+    text-decoration: none;
+}
+
+.navbar-botones:hover {
+    color: #d2d2d2;
+    padding-right: 40px;
+    text-decoration: none;
+}
+
+.navbar-botones:visited {
+    color: white;
+    padding-right: 40px;
+    text-decoration: none;
+}
+
+
+.navbar-avatar{
+    height: 60px;
+margin-right: 20px;
+
+  }
+
+
+.copyright-footer {
+    color: rgba(255, 255, 255, 0.4);
+    background-color: #222327;
+}

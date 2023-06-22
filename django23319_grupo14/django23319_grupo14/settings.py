@@ -43,11 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'publica',
-    'administrador',
-    'chat',
-    'django_extensions',
+    'chatbot',
+
 ]
+
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -164,6 +166,11 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'administrador.Usuario'
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'index'
+
+
+
+# AUTH_USER_MODEL = 'administrador.Usuario'
+# LOGIN_URL = '/accounts/login'
+# LOGIN_REDIRECT_URL = 'index'
+
+

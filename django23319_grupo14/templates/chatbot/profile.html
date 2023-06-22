@@ -1,0 +1,79 @@
+{% extends 'chatbot/base.html' %}
+{% block title %}Hola {{user.username}} | Editá tu perfil{% endblock %}
+
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'chatbot/css/profile.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+
+{% block navbar %}
+{% load static %}
+{% include './navbar.html' %}
+{% endblock navbar %}
+
+
+<div class="chat-container">
+  <div class="card flex-grow-1">
+    
+
+
+    <div class="card-body messages-box">
+        <form id="profile_form" name="profile_form" action="{% url 'profile' %}" method="POST">
+            {% csrf_token %}
+            {% comment %}{{profile_form.as_table}}  {% endcomment %}
+
+            <div class="form-group my-3">
+              <label class="form-label">Nombre de usuario</label>
+              <input type="text" value="{{user.username}}"
+                  class="form-control form-control-lg" />             
+          </div>
+      
+          <div class="form-group my-3">
+            <label class="form-label">Número de teléfono</label>
+            <input type="text" name="{{form.telefono.name}}"
+                  value="{{user.profile.telefono}}"
+                  class="form-control form-control-lg" />
+          </div>
+
+          <div class="form-group my-3">
+            
+            <input type="image" src="{{user.profile.foto.url}}" class="rounded-circle" height="80px" value="{{user.profile.foto.url}}"
+                class="form-control form-control-lg" />     
+                <label class="form-label">{{user.profile.foto.url}}</label>       
+        </div>
+      
+
+
+        </form>
+<br>
+     <div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% load static %}
+{% include './footer.html' %}
+{% endblock footer %}
+
+
+
+{% block scripts %}
+
+{% comment %} JS para el pop up del perfil {% endcomment %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+{% endblock scripts%}
+
+

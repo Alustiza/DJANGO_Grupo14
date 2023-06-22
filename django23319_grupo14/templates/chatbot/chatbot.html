@@ -1,0 +1,185 @@
+{% extends 'chatbot/base.html' %}
+{% block title %}Hola {{user.username}}{% endblock %}
+
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'chatbot/css/chatbot.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+
+{% block navbar %}
+{% load static %}
+{% include './navbar.html' %}
+{% endblock navbar %}
+
+
+<div class="chat-container">
+  <div class="card flex-grow-1">
+    
+
+
+    <div class="card-body messages-box">
+      
+      <ul class="list-unstyled messages-list">
+        
+         <!-- <li class="message received">
+          <div class="message-text">
+            <div class="message-sender">
+              <b>AI Chatbot</b>
+            </div>
+            <div class="message-content">
+              Hi {{user.username}}, I am your AI Chatbot, you can ask me anything.
+            </div>
+          </div>
+        </li> -->
+
+        {% for chat in chats%}
+          {% if chat.user == request.user %}
+
+            <li class="message sent">
+          <div class="message-text">
+            <div class="message-sender">
+              
+              <img src="{{user.profile.foto.url}}" class="rounded-circle avatar-messages" 
+                    alt="avatar usuario" loading="lazy" />
+                    <span class="txtusuario">{{user.username}}</span>
+            </div>
+            <br>
+            <div class="message-content">
+              {{chat.message}}
+            </div>
+            <br>
+          </div>
+        </li>
+
+        <li class="message received">
+          <div class="message-text">
+            <div class="message-sender">
+             
+              
+
+              {% load static %}
+              <img src="{% static '/chatbot/img/avatar-chat.png' %}" class="rounded-circle avatar-messages" alt="mate.ai" loading="lazy">
+              
+              <span class="txtusuario">mate.ai</span>
+
+            </div>
+            <br>
+            <div class="message-content">
+              {{chat.response}}
+            </div>
+            <br>
+          </div>
+        </li>
+
+          {% endif %}
+        {% endfor %}
+
+
+      </ul>
+      
+    </div>
+    <br><br>
+    <br><br>
+    <br><br>
+  </div>
+  <form class="message-form">
+    {%csrf_token%}
+
+
+    <div class="">
+      <input type="text" class="message-input" placeholder="Qué vamos a estudiar hoy?...">
+      
+        <button type="submit" class="btn btn-primary btn-send">Enviar</button>
+      </div>
+    </div> 
+
+
+
+    
+
+    
+
+    
+  </form>
+
+</div>
+
+<script>
+  const messagesList = document.querySelector('.messages-list');
+  const messageForm = document.querySelector('.message-form');
+  const messageInput = document.querySelector('.message-input');
+
+  messageForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const message = messageInput.value.trim();
+    if (message.length === 0) {
+      return;
+    }
+
+    const messageItem = document.createElement('li');
+    messageItem.classList.add('message', 'sent');
+    messageItem.innerHTML = `
+        <div class="message-text">
+          <div class="message-sender">
+              
+            <img src="{{user.profile.foto.url}}" class="rounded-circle avatar-messages" 
+                  alt="avatar usuario" loading="lazy" />
+                  <span class="txtusuario">{{user.username}}</span>
+          </div>
+          <br>
+            <div class="message-content">
+                ${message}
+            </div>
+            <br>
+        </div>`;
+    messagesList.appendChild(messageItem);
+
+    messageInput.value = '';
+
+    fetch('', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+        'message': message
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        const response = data.response;
+        const messageItem = document.createElement('li');
+        messageItem.classList.add('message', 'received');
+        messageItem.innerHTML = `
+        <div class="message-text">
+          <div class="message-sender">
+             
+              
+
+            {% load static %}
+            <img src="{% static '/chatbot/img/avatar-chat.png' %}" class="rounded-circle avatar-messages" alt="mate.ai" loading="lazy">
+            <span class="txtusuario">mate.ai</span>
+
+          </div>
+          <br>
+            <div class="message-content">
+                ${response}
+            </div>
+            <br>
+        </div>
+          `;
+        messagesList.appendChild(messageItem);
+      });
+  });
+
+</script>
+{% endblock %}
+
+{% block scripts %}
+{% comment %} JS para el pop up del perfil {% endcomment %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+{% endblock scripts%}

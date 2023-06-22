@@ -26,13 +26,16 @@ def chatbot(request):
     # System Context
     context = {
         "role": "system",
-        "content": "eres un asistente muy útil especializado en matemáticas para adolescentes. Tus respuestas siempre incluyen el paso a paso. Siempre arrancas diciendo Respuesta: "
+        "content": "eres un asistente muy útil especializado en matemáticas para adolescentes. Tus respuestas siempre incluyen el paso a paso."
     }
     chatbot_response = None
-    user_input = previous_response
+    new_question = None
+    user_input = [previous_response]
+   
 
     if api_key is not None and request.method == "POST":
-        user_input = request.POST.get("user_input")
+        new_question = request.POST.get("user_input")
+        user_input = [previous_response, new_question]
         prompt = f"{context['content']}{user_input}"
 
         response = openai.Completion.create(
@@ -48,4 +51,4 @@ def chatbot(request):
         session["chatbot_response"] = chatbot_response
         session.save()
 
-    return render(request, "chat/main.html", {"timestamp": current_time, "question": user_input, "response": chatbot_response})
+    return render(request, "chat/main.html", {"timestamp": current_time, "question": new_question, "response": chatbot_response})
