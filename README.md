@@ -15,11 +15,13 @@ alustiza.p@gmail.com
 Antonucci Luisina	
 lantonucci779@gmail.com
 
-Sosa Leandro	
-leocorrupto84@gmail.com
-
 Patané Daniela	
 danielapatane@gmail.com
+
+///
+Sosa Leandro	
+leocorrupto84@gmail.com
+///
 
 ///////
 

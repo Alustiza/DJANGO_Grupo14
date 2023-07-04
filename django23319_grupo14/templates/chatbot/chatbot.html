@@ -42,10 +42,17 @@
             <li class="message sent">
           <div class="message-text">
             <div class="message-sender">
-              
+
+              {% if user.profile.foto.url == "" %}
+              {% load static %}
+              <img src="{% static '/perfiles/thumb-null.jpg' %}" class="rounded-circle avatar-messages" 
+                    alt="avatar usuario" loading="lazy" /> 
+              <span class="txtusuario">{{user.username}}</span>
+              {% else %}
               <img src="{{user.profile.foto.url}}" class="rounded-circle avatar-messages" 
                     alt="avatar usuario" loading="lazy" />
                     <span class="txtusuario">{{user.username}}</span>
+              {% endif %}
             </div>
             <br>
             <div class="message-content">
